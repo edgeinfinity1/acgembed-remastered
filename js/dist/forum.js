@@ -1,4 +1,6 @@
 (function () {
+  const app = flarum.core.compat['forum/app'].default;
+
   function isMobileUserAgent() {
     if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
       return navigator.userAgentData.mobile;
@@ -26,7 +28,7 @@
     document.querySelectorAll('iframe').forEach(patchIframe);
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
+  app.initializers.add('zequeen-acgembed-remastered', function () {
     patchAll();
 
     const observer = new MutationObserver(function (mutations) {
@@ -39,14 +41,20 @@
             return;
           }
 
-          node.querySelectorAll && node.querySelectorAll('iframe').forEach(patchIframe);
+          if (typeof node.querySelectorAll === 'function') {
+            node.querySelectorAll('iframe').forEach(patchIframe);
+          }
         });
       });
     });
 
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    const observerTarget = document.body || document.documentElement;
+
+    if (observerTarget) {
+      observer.observe(observerTarget, {
+        childList: true,
+        subtree: true,
+      });
+    }
   });
 })();
