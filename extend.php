@@ -16,13 +16,16 @@ namespace zequeen\Acgembed;
 
 use Flarum\Extend;
 use s9e\TextFormatter\Configurator;
+
 return [
+    (new Extend\Frontend('forum'))
+        ->js(__DIR__ . '/js/dist/forum.js'),
     (new Extend\Formatter)
         ->configure(function (Configurator $config) {
             $config->MediaEmbed->add(
                 'xiami',
                 [
-                    'host'	  => 'xiami.com',
+                    'host'   => 'xiami.com',
                     'extract' => "!xiami\.com/song/(?'xmid'[-0-9]+)!",
                     'iframe' => [
                         'height' => 170,
@@ -59,37 +62,37 @@ return [
                     ]
                 ]
             );
-			 $config->MediaEmbed->add(
-				'acfun',
-				[
-					'host'	  => 'acfun.cn',
-					'extract' => "!acfun\.cn/v/ac(?'acid'[-0-9]+)!",
-					'iframe' => [
+            $config->MediaEmbed->add(
+                'acfun',
+                [
+                    'host'   => 'acfun.cn',
+                    'extract' => "!acfun\.cn/v/ac(?'acid'[-0-9]+)!",
+                    'iframe' => [
                         'height' => 540,
                         'width' => 990,
-						'src'  => '//www.acfun.cn/player/ac{@acid}'
-					]
-				]
-			);
-			 $config->MediaEmbed->add(
-				'bilibili',
-				[
-					'host'	  => ['bilibili.com','b23.tv',],
-					'extract' => [
-						"!bilibili\.com/video(/av(?'aid'[-0-9]+))|(/BV(?'bvid'[-0-9A-Z_a-z]+))(\?p=(?'pn'[-0-9]+))?!",
-						"!b23\.tv/(/av(?'aid'[-0-9]+))|(/BV(?'bvid'[-0-9A-Z_a-z]+))(/p(?'pn'[-0-9]+))?!"
-					],
-					'iframe' => [
+                        'src'  => '//www.acfun.cn/player/ac{@acid}'
+                    ]
+                ]
+            );
+            $config->MediaEmbed->add(
+                'bilibili',
+                [
+                    'host'   => ['bilibili.com', 'b23.tv'],
+                    'extract' => [
+                        "!bilibili\.com/video(/av(?'aid'[-0-9]+))|(/BV(?'bvid'[-0-9A-Z_a-z]+))(\?p=(?'pn'[-0-9]+))?!",
+                        "!b23\.tv/(/av(?'aid'[-0-9]+))|(/BV(?'bvid'[-0-9A-Z_a-z]+))(/p(?'pn'[-0-9]+))?!"
+                    ],
+                    'iframe' => [
                         'height' => 540,
                         'width' => 990,
-						'src'  => '//player.bilibili.com/player.html?aid={@aid}&bvid={@bvid}&page={@pn}&autoplay=0'
-					]
-				]
-			);
+                        'src'  => '//player.bilibili.com/player.html?aid={@aid}&bvid={@bvid}&page={@pn}&autoplay=0'
+                    ]
+                ]
+            );
             $config->MediaEmbed->add(
                 'niconico',
                 [
-                    'host'	  => ['nicovideo.jp','nico.ms'],
+                    'host'   => ['nicovideo.jp', 'nico.ms'],
                     'extract' => [
                         "!nicovideo\.jp/watch/sm(?'smid'[-0-9]+)!",
                         "!nico\.ms/sm(?'smid'[-0-9]+)!",
@@ -152,9 +155,9 @@ return [
                     ]
                 ]
             );
-             $config->BBCodes->addCustom(
-               '[oneindex src={URL?}][/oneindex]',
-               '<video preload="" controls="" width="100%"><source src="{URL}" type="video/mp4"></video>'
+            $config->BBCodes->addCustom(
+                '[oneindex src={URL?}][/oneindex]',
+                '<video preload="" controls="" width="100%"><source src="{URL}" type="video/mp4"></video>'
             );
         })
 ];
