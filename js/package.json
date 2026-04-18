@@ -2,7 +2,7 @@
   "private": true,
   "name": "@zequeen/acgembed-remastered",
   "devDependencies": {
-    "@flarum/webpack-config": "^2.0.0",
+    "flarum-webpack-config": "^1.0.0",
     "webpack": "^5.0.0",
     "webpack-cli": "^5.0.0"
   },
