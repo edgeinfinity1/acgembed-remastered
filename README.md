@@ -4,7 +4,7 @@
 
 1. 调整版本号使其可以安装在正式版以后
 2. 调整部分嵌入摆件的大小，以适配文字总宽度
-3. 不知道了
+3. 新增移动端网易云音乐 iframe 适配：根据浏览器 UA 在移动端自动使用 `music.163.com/m/outchain`
 
 ---
 
@@ -24,4 +24,3 @@ composer require zequeen/acgembed-remarstered
 composer update zequeen/acgembed-remarstered
 php flarum cache:clear
 ```
-
